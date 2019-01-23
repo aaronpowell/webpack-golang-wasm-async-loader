@@ -1,0 +1,28 @@
+{
+  "name": "golang-wasm-async-loader",
+  "version": "0.1.0",
+  "description": "Golang WebAssembly loader for webpack that generates an async pattern for working with Go's WebAssembly output",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "keywords": [
+    "go",
+    "golang",
+    "wasm",
+    "webassembly",
+    "webpack"
+  ],
+  "author": "Aaron Powell",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.2.4"
+  },
+  "dependencies": {
+    "@types/webpack": "^4.4.23"
+  },
+  "peerDependencies": {
+    "webpack": "^4.29.0"
+  }
+}
