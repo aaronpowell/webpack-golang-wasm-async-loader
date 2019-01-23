@@ -1,6 +1,6 @@
 //+ build js,wasm
 
-package gobidge
+package gobridge
 
 import (
 	"syscall/js"
