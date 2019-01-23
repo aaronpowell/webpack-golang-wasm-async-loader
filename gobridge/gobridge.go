@@ -31,9 +31,5 @@ func RegisterCallback(name string, callback func(args ...js.Value) js.Value) {
 func InitializeBridge() {
 	global := js.Global()
 
-	bridgeMap := make(map[string]string)
-
-	global.Set(bridgeJavaScriptName, js.ValueOf(bridgeMap))
-
 	bridgeRoot = global.Get(bridgeJavaScriptName)
 }

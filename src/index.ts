@@ -5,12 +5,15 @@ import { execFile } from "child_process";
 
 const proxyBuilder = `
 let ready = false;
+if (!global.__gobridge__) {
+  global.__gobridge__ = {};
+}
 
 async function init() {
-    const go = new Go();
-    let result = await WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject);
-    go.run(result.instance);
-    ready = true;
+  const go = new Go();
+  let result = await WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject);
+  go.run(result.instance);
+  ready = true;
 }
 
 function sleep() {
