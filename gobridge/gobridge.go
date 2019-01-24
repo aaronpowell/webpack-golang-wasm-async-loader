@@ -24,7 +24,7 @@ func registrationWrapper(fn func(args ...js.Value) js.Value) func(args []js.Valu
 
 // RegisterCallback Registers a Go function to be a callback used in JavaScript
 func RegisterCallback(name string, callback func(args ...js.Value) js.Value) {
-	bridgeRoot.Set(name, registrationWrapper(callback))
+	bridgeRoot.Set(name, js.NewCallback(registrationWrapper(callback)))
 }
 
 // InitializeBridge is called when the Go WASM application is started
