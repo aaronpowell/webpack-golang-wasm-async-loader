@@ -24,5 +24,8 @@
   },
   "peerDependencies": {
     "webpack": "^4.29.0"
+  },
+  "engines": {
+    "node": ">= 8.0.0"
   }
 }
