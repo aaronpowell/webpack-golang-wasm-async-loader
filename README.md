@@ -97,6 +97,10 @@ To do this a function is exported from the package called `RegisterCallback` whi
 
 In JavaScript a global object is registered as `__gobridge__` which the registrations happen against.
 
+## Example
+
+You'll find an example of this in action in the [`example`](https://github.com/aaronpowell/webpack-golang-wasm-async-loader/tree/master/example) folder.
+
 # Licence
 
 MIT
