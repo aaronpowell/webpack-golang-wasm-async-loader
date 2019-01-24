@@ -1,6 +1,6 @@
-[![Build Status][build-url]][build-badge]
+[![Build Status][build]][build-url]
+[![npm][npm]][npm-url]
 [![node][node]][node-url]
-[![deps][deps]][deps-url]
 
 <div align="center">
   <a href="https://github.com/webpack/webpack">
@@ -105,8 +105,8 @@ MIT
 
 Aaron Powell
 
-[build-badge]: https://aaronpowell.visualstudio.com/webpack-golang-wasm-async-loader/_apis/build/status/aaronpowell.webpack-golang-wasm-async-loader?branchName=master
-[build-link]: https://aaronpowell.visualstudio.com/webpack-golang-wasm-async-loader/_build/latest?definitionId=16?branchName=master
+[build]: https://aaronpowell.visualstudio.com/webpack-golang-wasm-async-loader/_apis/build/status/aaronpowell.webpack-golang-wasm-async-loader?branchName=master
+[build-url]: https://aaronpowell.visualstudio.com/webpack-golang-wasm-async-loader/_build/latest?definitionId=16?branchName=master
 
 [npm]: https://img.shields.io/npm/v/golang-wasm-async-loader.svg
 [npm-url]: https://npmjs.com/package/golang-wasm-async-loader
