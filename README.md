@@ -54,8 +54,8 @@ package main
 
 import (
 	"strconv"
-  "syscall/js"
-  "github.com/aaronpowell/webpack-golang-wasm-async-loader/gobridge"
+	"syscall/js"
+	"github.com/aaronpowell/webpack-golang-wasm-async-loader/gobridge"
 )
 
 func add(i ...js.Value) js.Value {
