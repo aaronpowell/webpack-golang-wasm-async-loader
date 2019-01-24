@@ -1,9 +1,9 @@
 import * as webpack from "webpack";
 import { readFileSync, unlinkSync } from "fs";
-import { join } from "path";
+import { join, basename } from "path";
 import { execFile } from "child_process";
 
-const proxyBuilder = `
+const proxyBuilder = (filename: string) => `
 let ready = false;
 
 const g = self || window || global
@@ -16,7 +16,7 @@ const bridge = g.__gobridge__;
 
 async function init() {
   const go = new Go();
-  let result = await WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject);
+  let result = await WebAssembly.instantiateStreaming(fetch("${filename}"), go.importObject);
   go.run(result.instance);
   ready = true;
 }
@@ -41,6 +41,17 @@ let proxy = new Proxy(
           while (!ready) {
             await sleep();
           }
+
+          if (!(key in bridge)) {
+            reject(\`There is nothing defined with the name "$\{key\}"\`);
+            return;
+          }
+
+          if (typeof bridge[key] !== 'function') {
+            resolve(bridge[key]);
+            return;
+          }
+
           run();
         });
       };
@@ -48,8 +59,7 @@ let proxy = new Proxy(
   }
 );
   
-export default proxy;
-  `;
+export default proxy;`;
 
 const getGoBin = (root: string) => `${root}/bin/go`;
 
@@ -77,7 +87,8 @@ function loader(this: webpack.loader.LoaderContext, contents: string) {
 
     let out = readFileSync(outFile);
     unlinkSync(outFile);
-    this.emitFile("main.wasm", out, null);
+    const emittedFilename = basename(this.resourcePath, ".go") + ".wasm";
+    this.emitFile(emittedFilename, out, null);
 
     cb(
       null,
@@ -85,7 +96,7 @@ function loader(this: webpack.loader.LoaderContext, contents: string) {
         "require('!",
         join(__dirname, "..", "lib", "wasm_exec.js"),
         "');",
-        proxyBuilder
+        proxyBuilder(emittedFilename)
       ].join("")
     );
   });

@@ -49,8 +49,10 @@ import wasm from './main.go'
 
 async function init() {
   const result = await wasm.add(1, 2);
-
   console.log(result);
+
+  const someValue = await wasm.someValue();
+  console.log(someValue);
 }
 ```
 
@@ -80,6 +82,7 @@ func main() {
 	c := make(chan struct{}, 0)
 
 	gobridge.RegisterCallback("add", add)
+	gobridge.RegisterValue("someValue", "Hello World")
 
 	<-c
 }
@@ -94,6 +97,8 @@ To do this a function is exported from the package called `RegisterCallback` whi
 * A `string` representing the name to register it as in JavaScript (and what you'll call it using)
 * The `func` to register as a callback
   * Note: The `func` must has a signature of `(args ...js.Value) js.Value` and you are responsible to box/unbox the JavaScript values to the appropriate Go types. Similarly you need to box the return type as a `js.Value`
+
+If you want to register a static value that's been created from Go to be available in JavaScript you can do that with `RegisterValue`, which takes a name and a `js.Value`. Values are converted to functions that return a Promise so they can be treated asynchronously like function invocations.
 
 In JavaScript a global object is registered as `__gobridge__` which the registrations happen against.
 

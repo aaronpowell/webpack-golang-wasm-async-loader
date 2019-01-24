@@ -22,9 +22,14 @@ func registrationWrapper(fn func(args ...js.Value) js.Value) func(args []js.Valu
 	}
 }
 
-// RegisterCallback Registers a Go function to be a callback used in JavaScript
+// RegisterCallback registers a Go function to be a callback used in JavaScript
 func RegisterCallback(name string, callback func(args ...js.Value) js.Value) {
 	bridgeRoot.Set(name, js.NewCallback(registrationWrapper(callback)))
+}
+
+// RegisterValue registers a static value output from Go for access in JavaScript
+func RegisterValue(name string, value js.Value) {
+  bridgeRoot.Set(name, value)
 }
 
 func init() {
