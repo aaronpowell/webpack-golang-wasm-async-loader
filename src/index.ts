@@ -5,9 +5,14 @@ import { execFile } from "child_process";
 
 const proxyBuilder = `
 let ready = false;
-if (!global.__gobridge__) {
-  global.__gobridge__ = {};
+
+const g = self || window || global
+
+if (!g.__gobridge__) {
+  g.__gobridge__ = {};
 }
+
+const bridge = g.__gobridge__;
 
 async function init() {
   const go = new Go();
@@ -30,7 +35,7 @@ let proxy = new Proxy(
         return new Promise(async (resolve, reject) => {
           let run = () => {
             let cb = (err, ...msg) => (err ? reject(err) : resolve(...msg));
-            (self || window || global)[key].apply(undefined, [...args, cb]);
+            bridge[key].apply(undefined, [...args, cb]);
           };
 
           while (!ready) {
