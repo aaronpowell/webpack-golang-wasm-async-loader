@@ -27,8 +27,7 @@ func RegisterCallback(name string, callback func(args ...js.Value) js.Value) {
 	bridgeRoot.Set(name, js.NewCallback(registrationWrapper(callback)))
 }
 
-// InitializeBridge is called when the Go WASM application is started
-func InitializeBridge() {
+func init() {
 	global := js.Global()
 
 	bridgeRoot = global.Get(bridgeJavaScriptName)
