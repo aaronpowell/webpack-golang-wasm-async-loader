@@ -1,18 +1,25 @@
-# Golang WebAssembly loader for webpack
+[![Build Status][build-url]][build-badge]
+[![node][node]][node-url]
+[![deps][deps]][deps-url]
+
+<div align="center">
+  <a href="https://github.com/webpack/webpack">
+    <img width="200" height="200"
+      src="https://webpack.js.org/assets/icon-square-big.svg">
+  </a>
+  <h1>Golang WebAssembly Async Loader</h1>
+  <p>Generates a WASM package from Golang and provides an async interface for working with it</p>
+</div>
+
+<h2 align="center">Install</h2>
+
+```bash
+npm install --save-dev golang-wasm-async-loader
+```
 
 This is a loader for [webpack](https://webpack.js.org/) that is used for generating [WebAssembly](https://webassembly.org/) (aka WASM) bundles from [Go](https://golang.org).
 
 The JavaScript bridge that is then generated for webpack will expose the WebAssembly functions as a Promise for interacting with.
-
-# Installation
-
-```
-## npm
-npm install --save-dev golang-wasm-async-loader
-
-## yarn
-yarn add golang-wasm-async-loader
-```
 
 ## webpack config
 
@@ -97,3 +104,12 @@ MIT
 # Credit
 
 Aaron Powell
+
+[build-badge]: https://aaronpowell.visualstudio.com/webpack-golang-wasm-async-loader/_apis/build/status/aaronpowell.webpack-golang-wasm-async-loader?branchName=master
+[build-link]: https://aaronpowell.visualstudio.com/webpack-golang-wasm-async-loader/_build/latest?definitionId=16?branchName=master
+
+[npm]: https://img.shields.io/npm/v/golang-wasm-async-loader.svg
+[npm-url]: https://npmjs.com/package/golang-wasm-async-loader
+
+[node]: https://img.shields.io/node/v/golang-wasm-async-loader.svg
+[node-url]: https://nodejs.org
