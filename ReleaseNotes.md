@@ -1,3 +1,7 @@
+## New in 0.2.2 (2019/01/25)
+
+* Adding the Release Notes file to the published artifacts
+
 ## New in 0.2.1 (2019/01/25)
 
 * Trying to get the build/release process done a little better
