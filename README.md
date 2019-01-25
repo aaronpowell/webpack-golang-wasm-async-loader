@@ -114,7 +114,7 @@ MIT
 
 Aaron Powell
 
-[build]: https://aaronpowell.visualstudio.com/webpack-golang-wasm-async-loader/_apis/build/status/aaronpowell.webpack-golang-wasm-async-loader?branchName=master
+[build]: https://aaronpowell.visualstudio.com/webpack-golang-wasm-async-loader/_apis/build/status/aaronpowell.webpack-golang-wasm-async-loader?branchName=master&label=Built%20on%20Azure%20🐱%E2%80%8D💻
 [build-url]: https://aaronpowell.visualstudio.com/webpack-golang-wasm-async-loader/_build/latest?definitionId=16?branchName=master
 
 [npm]: https://img.shields.io/npm/v/golang-wasm-async-loader.svg
