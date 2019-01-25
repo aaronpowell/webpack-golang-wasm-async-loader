@@ -62,5 +62,5 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)/release-notes'
-    artifactName: npm
+    artifactName: release-notes
   displayName: 'Publish Release Notes artifact'

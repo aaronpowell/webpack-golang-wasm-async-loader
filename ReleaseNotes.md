@@ -1,3 +1,7 @@
+## New in 0.2.3 (2019/01/25)
+
+* Issue with the artifacts generated
+
 ## New in 0.2.2 (2019/01/25)
 
 * Adding the Release Notes file to the published artifacts
