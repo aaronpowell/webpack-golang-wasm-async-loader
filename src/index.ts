@@ -79,9 +79,9 @@ function loader(this: webpack.loader.LoaderContext, contents: string) {
   const outFile = `${this.resourcePath}.wasm`;
   const args = ["build", "-o", outFile, this.resourcePath];
 
-  execFile(goBin, args, opts, (_, err) => {
+  execFile(goBin, args, opts, (err) => {
     if (err) {
-      cb(new Error(err));
+      cb(err);
       return;
     }
 
