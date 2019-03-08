@@ -1,7 +1,7 @@
 import * as webpack from "webpack";
-import { readFileSync, unlinkSync } from "fs";
-import { join, basename } from "path";
-import { execFile } from "child_process";
+import {readFileSync, unlinkSync} from "fs";
+import {basename, join} from "path";
+import {execFile} from "child_process";
 
 const proxyBuilder = (filename: string) => `
 let ready = false;
@@ -70,6 +70,7 @@ function loader(this: webpack.loader.LoaderContext, contents: string) {
     env: {
       GOPATH: process.env.GOPATH,
       GOROOT: process.env.GOROOT,
+      GOCACHE: "./.gocache",
       GOOS: "js",
       GOARCH: "wasm"
     }
