@@ -67,7 +67,7 @@ import (
 	"github.com/aaronpowell/webpack-golang-wasm-async-loader/gobridge"
 )
 
-func add(i ...js.Value) js.Value {
+func add(i []js.Value) (interface{},error) {
 	ret := 0
 
 	for _, item := range i {
@@ -75,7 +75,7 @@ func add(i ...js.Value) js.Value {
 		ret += val
 	}
 
-	return js.ValueOf(ret)
+	return ret, nil
 }
 
 func main() {
@@ -96,9 +96,9 @@ To do this a function is exported from the package called `RegisterCallback` whi
 
 * A `string` representing the name to register it as in JavaScript (and what you'll call it using)
 * The `func` to register as a callback
-  * Note: The `func` must has a signature of `(args ...js.Value) js.Value` and you are responsible to box/unbox the JavaScript values to the appropriate Go types. Similarly you need to box the return type as a `js.Value`
+  * The `func` must has a signature of `(args js.Value) (interface{}, error)` so you can raise an error if you need
 
-If you want to register a static value that's been created from Go to be available in JavaScript you can do that with `RegisterValue`, which takes a name and a `js.Value`. Values are converted to functions that return a Promise so they can be treated asynchronously like function invocations.
+If you want to register a static value that's been created from Go to be available in JavaScript you can do that with `RegisterValue`, which takes a name and a value. Values are converted to functions that return a Promise so they can be treated asynchronously like function invocations.
 
 In JavaScript a global object is registered as `__gobridge__` which the registrations happen against.
 
