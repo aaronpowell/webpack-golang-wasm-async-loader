@@ -34,7 +34,7 @@ func RegisterCallback(name string, callback func(this js.Value, args []js.Value)
 }
 
 // RegisterValue registers a static value output from Go for access in JavaScript
-func RegisterValue(name string, value js.Value) {
+func RegisterValue(name string, value interface{}) {
 	bridgeRoot.Set(name, value)
 }
 
