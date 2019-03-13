@@ -4,62 +4,8 @@ import {basename, join} from "path";
 import {execFile} from "child_process";
 
 const proxyBuilder = (filename: string) => `
-let ready = false;
-
-const g = self || window || global
-
-if (!g.__gobridge__) {
-  g.__gobridge__ = {};
-}
-
-const bridge = g.__gobridge__;
-
-async function init() {
-  const go = new Go();
-  let result = await WebAssembly.instantiateStreaming(fetch("${filename}"), go.importObject);
-  go.run(result.instance);
-  ready = true;
-}
-
-function sleep() {
-  return new Promise(requestAnimationFrame);
-}
-
-init();
-
-let proxy = new Proxy(
-  {},
-  {
-    get: (_, key) => {
-      return (...args) => {
-        return new Promise(async (resolve, reject) => {
-          let run = () => {
-            let cb = (err, ...msg) => (err ? reject(err) : resolve(...msg));
-            bridge[key].apply(undefined, [...args, cb]);
-          };
-
-          while (!ready) {
-            await sleep();
-          }
-
-          if (!(key in bridge)) {
-            reject(\`There is nothing defined with the name "$\{key\}"\`);
-            return;
-          }
-
-          if (typeof bridge[key] !== 'function') {
-            resolve(bridge[key]);
-            return;
-          }
-
-          run();
-        });
-      };
-    }
-  }
-);
-  
-export default proxy;`;
+export default gobridge('${filename}');
+`;
 
 const getGoBin = (root: string) => `${root}/bin/go`;
 
@@ -97,6 +43,9 @@ function loader(this: webpack.loader.LoaderContext, contents: string) {
         "require('!",
         join(__dirname, "..", "lib", "wasm_exec.js"),
         "');",
+        "import gobridge from '",
+        join(__dirname, "..", "dist", "gobridge.js"),
+        "';",
         proxyBuilder(emittedFilename)
       ].join("")
     );
