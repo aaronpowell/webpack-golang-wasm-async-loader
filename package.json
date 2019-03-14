@@ -4,7 +4,8 @@
   "description": "Golang WebAssembly loader for webpack that generates an async pattern for working with Go's WebAssembly output",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "build:watch": "tsc --watch"
   },
   "keywords": [
     "go",
