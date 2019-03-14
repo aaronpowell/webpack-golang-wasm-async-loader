@@ -3,8 +3,6 @@ declare global {
     __gobridge__: any
 
     Go: any
-
-    WebAssembly: any
   }
 }
 
@@ -25,7 +23,9 @@ export default function (filename: string) {
 
   async function init() {
     const go = new g.Go();
-    let result = await g.WebAssembly.instantiateStreaming(fetch(filename), go.importObject);
+    let response = await fetch(filename);
+    let bytes = await response.arrayBuffer()
+    let result = await WebAssembly.instantiate(bytes, go.importObject);
     go.run(result.instance);
     ready = true;
   }
