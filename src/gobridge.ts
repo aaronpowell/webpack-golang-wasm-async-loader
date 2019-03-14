@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-const g = self || window || global
+const g = global || window || self
 
 if (!g.__gobridge__) {
   g.__gobridge__ = {};
@@ -18,13 +18,12 @@ function sleep() {
   return new Promise(requestAnimationFrame);
 }
 
-export default function (filename: string) {
+export default function (getBytes: Promise<Buffer>) {
   let ready = false;
 
   async function init() {
     const go = new g.Go();
-    let response = await fetch(filename);
-    let bytes = await response.arrayBuffer()
+    let bytes = await getBytes
     let result = await WebAssembly.instantiate(bytes, go.importObject);
     go.run(result.instance);
     ready = true;

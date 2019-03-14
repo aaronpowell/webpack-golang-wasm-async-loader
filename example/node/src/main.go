@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"syscall/js"
 
-	"../../gobridge"
+	"../../../gobridge"
 )
 
 var global = js.Global()
