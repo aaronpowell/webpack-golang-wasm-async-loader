@@ -16,7 +16,7 @@ function loader(this: webpack.loader.LoaderContext, contents: string) {
     env: {
       GOPATH: process.env.GOPATH,
       GOROOT: process.env.GOROOT,
-      GOCACHE: "./.gocache",
+      GOCACHE: join(__dirname, "./.gocache"),
       GOOS: "js",
       GOARCH: "wasm"
     }
