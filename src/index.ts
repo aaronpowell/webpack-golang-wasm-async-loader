@@ -47,7 +47,7 @@ function loader(this: webpack.loader.LoaderContext, contents: string) {
         join(__dirname, "..", "dist", "gobridge.js"),
         "';",
         proxyBuilder(emittedFilename)
-      ].join("")
+      ].join("").replace(/\\/g, "\\\\")
     );
   });
 }
