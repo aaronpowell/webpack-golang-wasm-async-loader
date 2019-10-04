@@ -21,6 +21,8 @@ This is a loader for [webpack](https://webpack.js.org/) that is used for generat
 
 The JavaScript bridge that is then generated for webpack will expose the WebAssembly functions as a Promise for interacting with.
 
+Note: It works with `Go 1.12` for now. Stay tuned for updates :)
+
 ## webpack config
 
 ```js
