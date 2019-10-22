@@ -13,11 +13,13 @@ import (
 var global = js.Global()
 
 func add(this js.Value, args []js.Value) (interface{}, error) {
-	ret := 0
+	var ret float64
 
 	for _, item := range args {
-		val, _ := strconv.Atoi(item.String())
-		ret += val
+		if item.Type() == js.TypeNumber {
+			val := item.Float()
+			ret += val
+		}
 	}
 
 	return ret, nil
