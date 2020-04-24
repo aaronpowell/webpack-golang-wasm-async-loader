@@ -33,6 +33,7 @@ function loader(this: webpack.loader.LoaderContext, contents: string) {
     }
 
     let out = readFileSync(outFile);
+    let ldr = readFileSync(join(opts.env.GOROOT, "misc/wasm/wasm_exec.js"));
     unlinkSync(outFile);
     const emittedFilename = basename(this.resourcePath, ".go") + ".wasm";
     this.emitFile(emittedFilename, out, null);
@@ -40,9 +41,8 @@ function loader(this: webpack.loader.LoaderContext, contents: string) {
     cb(
       null,
       [
-        "require('!",
-        join(__dirname, "..", "lib", "wasm_exec.js"),
-        "');",
+        ldr,
+        ";",
         "import gobridge from '",
         join(__dirname, "..", "dist", "gobridge.js"),
         "';",
