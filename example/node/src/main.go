@@ -4,7 +4,6 @@ package main
 
 import (
 	"errors"
-	"strconv"
 	"syscall/js"
 
 	"../../../gobridge"
@@ -16,7 +15,7 @@ func add(this js.Value, args []js.Value) (interface{}, error) {
 	ret := 0
 
 	for _, item := range args {
-		val, _ := strconv.Atoi(item.String())
+		val := item.Int()
 		ret += val
 	}
 
