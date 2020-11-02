@@ -33,5 +33,5 @@ func main() {
 	gobridge.RegisterCallback("raiseError", err)
 	gobridge.RegisterValue("someValue", "Hello World")
 
-	<-c
+	<-c // Makes the Go process wait until we want it to end
 }

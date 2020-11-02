@@ -34,5 +34,5 @@ func main() {
 	gobridge.RegisterValue("someValue", "Hello World")
 	gobridge.RegisterValue("numericValue", 123)
 
-	<-c
+	<-c // Makes the Go process wait until we want it to end
 }
