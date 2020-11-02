@@ -21,7 +21,7 @@ This is a loader for [webpack](https://webpack.js.org/) that is used for generat
 
 The JavaScript bridge that is then generated for webpack will expose the WebAssembly functions as a Promise for interacting with.
 
-Note: It works with `Go 1.12` for now. Stay tuned for updates :)
+Note: This fork updated to with `Go 1.13`.
 
 ## webpack config
 
@@ -104,10 +104,24 @@ If you want to register a static value that's been created from Go to be availab
 
 In JavaScript a global object is registered as `__gobridge__` which the registrations happen against.
 
-## Example
+## Examples
 
-You'll find an example of this in action in the [`example`](https://github.com/aaronpowell/webpack-golang-wasm-async-loader/tree/master/example) folder.
+You'll find an examples for a NodeJS CLI and a React Web app in the [`example`](https://github.com/aaronpowell/webpack-golang-wasm-async-loader/tree/master/example) folder.
 
+## Environment
+
+To build your project (and the examples) you will need the GOROOT environment variable set. So for example if using the bash shell:
+
+node example:
+```bash
+GOROOT=`go env GOROOT` npm run predemo
+npm run demo
+```
+web example (with hot reloading):
+```bash
+GOROOT=`go env GOROOT` npm run build
+GOROOT=`go env GOROOT` npm run start
+```
 # Licence
 
 MIT
