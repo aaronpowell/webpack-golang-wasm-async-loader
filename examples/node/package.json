@@ -5,9 +5,9 @@
   "description": "",
   "main": "src/index.js",
   "dependencies": {
+    "isomorphic-fetch": "^3.0.0"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "scripts": {
     "predemo": "GOOS=js GOARCH=wasm go build -o ./src/main.wasm ./src/main.go",
     "demo": "node ./src/index.js"

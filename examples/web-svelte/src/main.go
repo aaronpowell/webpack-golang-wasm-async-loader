@@ -4,7 +4,6 @@ package main
 
 import (
 	"errors"
-	"strconv"
 	"syscall/js"
 
 	"../../../gobridge"
@@ -16,7 +15,7 @@ func add(this js.Value, args []js.Value) (interface{}, error) {
 	ret := 0
 
 	for _, item := range args {
-		val, _ := strconv.Atoi(item.String())
+		val := item.Int()
 		ret += val
 	}
 
@@ -33,6 +32,7 @@ func main() {
 	gobridge.RegisterCallback("add", add)
 	gobridge.RegisterCallback("raiseError", err)
 	gobridge.RegisterValue("someValue", "Hello World")
+	gobridge.RegisterValue("numericValue", 123)
 
-	<-c
+	<-c // Makes the Go process wait until we want it to end
 }
