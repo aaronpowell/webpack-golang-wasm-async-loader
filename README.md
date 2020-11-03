@@ -106,7 +106,9 @@ In JavaScript a global object is registered as `__gobridge__` which the registra
 
 ## Examples
 
-You'll find an examples for a NodeJS CLI and a React Web app in the [`example`](https://github.com/aaronpowell/webpack-golang-wasm-async-loader/tree/master/example) folder.
+Examples are provided for a CLI using NodeJS and for web using either React or Svelte. These are in the [`examples`](https://github.com/aaronpowell/webpack-golang-wasm-async-loader/tree/master/examples) directory, each with its own development and build environment.
+
+To make an example stand-alone, copy of the corresponding example to a new directory (outside the plugin directory) and then modify the example's `webpack.config.js` so that the `.go` loader refers to this plugin. Then use `npm add --save-dev webpack-golang-wasm-async-loader` to add it to the example's dependencies.
 
 ## Environment
 
