@@ -14,6 +14,7 @@ function loader(this: webpack.loader.LoaderContext, contents: string) {
 
   const opts = {
     env: {
+      GO111MODULE: "on",
       GOPATH: process.env.GOPATH,
       GOROOT: process.env.GOROOT,
       GOCACHE: join(__dirname, "./.gocache"),
@@ -24,7 +25,7 @@ function loader(this: webpack.loader.LoaderContext, contents: string) {
 
   const goBin = getGoBin(opts.env.GOROOT);
   const outFile = `${this.resourcePath}.wasm`;
-  const args = ["build", "-o", outFile, this.resourcePath];
+  const args = ["build", "-o", "-a", outFile, this.resourcePath];
 
   execFile(goBin, args, opts, (err) => {
     if (err) {
